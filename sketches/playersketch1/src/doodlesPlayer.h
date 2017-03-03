@@ -51,7 +51,7 @@ public:
 		_path = path;
 		_player = new ofxWMFVideoPlayer();
 		_player->load(path);
-		_startTime = ofRandom(5, 10);
+		_startTime = ofRandom(0, 15);
 		float w = _player->getWidth();
 		float h = _player->getHeight();
 		_buffer.allocate(w, h);
@@ -77,7 +77,7 @@ public:
 				}else{
 					_isPlaying = false;
 					_startTime = time + ofRandom(5, 10);
-					ofLog() << "stop : " << _path << " : " << ofToString(_startTime);
+					//ofLog() << "stop : " << _path << " : " << ofToString(_startTime);
 					_player->stop();
 					_position = getRandomPosition();
 					_buffer.begin();
@@ -88,7 +88,7 @@ public:
 			else {
 				//if (!_isPlaying) {
 					_isPlaying = true;
-					ofLog() << "play : " << _path;
+				//	ofLog() << "play : " << _path;
 					_player->play();
 				//}
 			}
@@ -106,8 +106,8 @@ public:
 private:
 
 	ofVec2f getRandomPosition() {
-		return ofVec2f(ofRandom(-_player->getWidth() * 0.5, ofGetWidth() + _player->getWidth() * 0.5),
-			ofRandom(-_player->getHeight() * 0.5, ofGetHeight() + _player->getHeight() * 0.5));
+		return ofVec2f(ofRandom(-180, ofGetWidth() -180),
+			ofRandom(-180, ofGetHeight() - 180));
 	}
 
 	bool _isPlaying;

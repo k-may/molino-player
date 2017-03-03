@@ -22,13 +22,17 @@ void doodlesPlayer::setup()
 		"doodle5.mp4",
 		"doodle6.mp4",
 		"doodle7.mp4",
+		"doodle8.mp4",
+		"doodle9.mp4",
+		"doodle10.mp4",
+		"doodle11.mp4",
+		"doodle12.mp4",
+		"doodle13.mp4",
 		"blob1.mp4",
-		"doodle2.mp4",
-		"doodle3.mp4",
-		"doodle4.mp4",
-		"doodle5.mp4",
-		"doodle6.mp4",
-		"blob2.mp4"
+		"blob2.mp4",
+		"blob3.mp4",
+		"blob4.mp4",
+		"blob5.mp4"
 	};
 
 	int num = sizeof(doodlePaths) / sizeof(doodlePaths[0]);

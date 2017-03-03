@@ -12,6 +12,7 @@ int num = 60;
 float mx[] = new float[num];
 float my[] = new float[num];
 
+boolean recording = false;
 boolean started = false;
 int frameCounter = 0;
 
@@ -33,22 +34,24 @@ void draw() {
     my[which] = mouseY;
 
     noFill();
+    strokeWeight(7);
     stroke(0);
     beginShape();
 
     for (int i = 0; i < num; i++) {
       int index = (which+1 + i) % num;
 
-      if (i == 0) {
+      /*if (i == 0) {
         vertex(mx[index], my[index]);
-      } else {
+      } else {*/
         curveVertex(mx[index], my[index]);
-      }
+      //}
     }
 
     endShape();
-    //saveFrame();
 
+    if (recording)
+      saveFrame();
 
     frameCounter ++;
   }
@@ -68,4 +71,13 @@ void mouseDragged() {
 
 void mouseReleased() {
   started = false;
+}
+
+void keyPressed() {
+  if (key == ' ')
+    recording = true;
+}
+
+void keyReleased() {
+  recording = false;
 }

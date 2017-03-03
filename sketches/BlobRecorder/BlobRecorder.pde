@@ -17,9 +17,10 @@ int frameCounter = 0;
 
 float scale = 0;
 
-PVector[] points = new PVector[4];
-PVector[] offsets = new PVector[4];
-PVector[] vectors = new PVector[4];
+int numPoints = 3;
+PVector[] points = new PVector[numPoints];
+PVector[] offsets = new PVector[numPoints];
+PVector[] vectors = new PVector[numPoints];
 
 void setup() {
   size(360, 360);
@@ -48,10 +49,11 @@ void draw() {
   PVector prevPos = new PVector();
   PVector center = new PVector(width / 2, height/2); 
 
-  float theta =millis() * 0.001;
+  float theta =millis() * 0.005;
 
   if (theta < PI*2) {
     scale =1.0 - (cos(theta) + 1.0) / 2.0;
+    scale *= 0.7;
 
     for (int i = 0; i < points.length + 1; i++) {
       int index = i % points.length;
@@ -79,12 +81,12 @@ void draw() {
     }
     for (int i = 0; i < vectors.length; i ++) {
       //vectors[0].x += (noise(millis()*0.3) - 0.5) * 3.0;
-      vectors[i].x += sin(millis() * 0.001 + i*0.4 + random(0.3) + offsets[i].x)*0.5;
-      vectors[i].y += cos (millis() * 0.003 + i*0.2 + random(0.3) + offsets[i].x)*0.5;
+      vectors[i].x += sin(millis() * 0.1 + i*0.9 + random(2) + offsets[i].x)*0.9;
+      vectors[i].y += cos (millis() * 0.03 + i*0.9 + random(2) + offsets[i].x)*0.9;
     }
     fill(0);
     endShape(CLOSE);
-    saveFrame();
+   saveFrame();
   } else
     exit();
 }
