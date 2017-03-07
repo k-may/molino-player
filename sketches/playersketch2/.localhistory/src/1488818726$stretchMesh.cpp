@@ -6,8 +6,6 @@ stretchMesh::stretchMesh()
 {
 	headPos.x = ofRandom(ofGetWidth(), ofGetHeight());
 
-	_mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
-
 	body.push_back(headPos);
 
 	for (int i = 0; i < 50; i++) {
@@ -16,11 +14,6 @@ stretchMesh::stretchMesh()
 		vertices.push_back(ofVec2f(0, 0));
 	}
 
-	for (int i = 0; i < vertices.size(); i++) {
-		_mesh.addVertex(ofPoint(0, 0));
-		_mesh.addVertex(ofPoint(0, 0));
-		_mesh.addVertex(ofPoint(0, 0));
-	}
 }
 
 

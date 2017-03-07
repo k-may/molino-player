@@ -23,8 +23,6 @@ private:
 	void limit(ofVec2f & vec, float max);
 	vector<ofVec2f> vertices;
 	
-	ofMesh _mesh;
-
 	vector<ofVec2f> body;
 	ofVec2f headPos;
 
