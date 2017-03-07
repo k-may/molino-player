@@ -50,6 +50,7 @@ void ofApp::draw() {
 	_mesh.drawVertices();
 	ofPopMatrix();
 
+	_mesh.getVertex
 }
 
 //--------------------------------------------------------------

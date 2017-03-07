@@ -25,7 +25,9 @@ stretchMesh::stretchMesh()
 			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 3,ii + 1 }, 3);
 		}
 	}
+
 }
+
 
 stretchMesh::~stretchMesh()
 {

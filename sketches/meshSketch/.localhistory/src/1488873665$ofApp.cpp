@@ -19,15 +19,23 @@ void ofApp::update() {
 	};
 	_mesh.addVertices(vertices);
 
-	/*_mesh.addColor(ofFloatColor(1.0, 0.0, 0.0));
+	_mesh.addColor(ofFloatColor(1.0, 0.0, 0.0));
 	_mesh.addColor(ofFloatColor(0.0, 1.0, 0.0));
 	_mesh.addColor(ofFloatColor(0.0, 0.0, 1.0));
 	_mesh.addColor(ofFloatColor(1.0, 1.0, 0.0));
 	_mesh.addColor(ofFloatColor(1.0, 0.0, 1.0));
 	_mesh.addColor(ofFloatColor(0.0, 1.0, 1.0));
 	_mesh.addColor(ofFloatColor(1.0, 1.0, 1.0));
-	_mesh.addColor(ofFloatColor(0.5, 0.5, 0.5));*/
+	_mesh.addColor(ofFloatColor(0.5, 0.5, 0.5));
 
+	vector<ofIndexType> indices = {
+		2,1,0,//0,1,2,
+		2,3,1,//1,3,2,
+		4,3,2,//2,3,4,
+		4,5,3,//3,5,4,
+		6,5,4,//4,5,6,
+		6,7,5//5,7,6
+	};
 	_mesh.addIndices(new ofIndexType[3]{ 2,1,0 }, 3);
 	_mesh.addIndices(new ofIndexType[3]{ 2,3,1 }, 3);
 	_mesh.addIndices(new ofIndexType[3]{ 4,3,2 }, 3);
@@ -49,7 +57,6 @@ void ofApp::draw() {
 
 	_mesh.drawVertices();
 	ofPopMatrix();
-
 }
 
 //--------------------------------------------------------------

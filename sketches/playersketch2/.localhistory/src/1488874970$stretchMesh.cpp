@@ -1,5 +1,7 @@
 #include "stretchMesh.h"
 
+
+
 stretchMesh::stretchMesh()
 {
 	headPos.x = ofRandom(ofGetWidth(), ofGetHeight());
@@ -8,24 +10,23 @@ stretchMesh::stretchMesh()
 
 	body.push_back(headPos);
 
+	vector<ofVec2f> vertices;
+
 	for (int i = 0; i < 50; i++) {
 		body.push_back(headPos);
-		vertices.push_back(ofVec3f(0, 0));
-		vertices.push_back(ofVec3f(0, 0));
+		vertices.push_back(ofVec2f(0, 0));
+		vertices.push_back(ofVec2f(0, 0));
+		_mesh.addVertex(ofVec2f(0, 0));
+		_mesh.addVertex(ofVec2f(0, 0));
 
-		_mesh.addVertex(ofVec3f(0, 0));
-		_mesh.addVertex(ofVec3f(0, 0));
-
-		if (i < 49) {
-			ofIndexType ii = i * 2;
-			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 1) << "/" << ofToString(ii);
-			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 3) << "/" << ofToString(ii + 1);
-
-			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 1,ii }, 3);
-			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 3,ii + 1 }, 3);
-		}
+		_mesh.addIndices(new ofIndexType[3]{ i + 2,i + 1,i }, 3);
 	}
+
+	_mesh.addVertices(vertices);
+
+
 }
+
 
 stretchMesh::~stretchMesh()
 {
@@ -40,6 +41,7 @@ void stretchMesh::update()
 
 void stretchMesh::draw()
 {
+	ofLog() << "head : " << headPos.x << " : " << headPos.y;
 	ofFill();
 	ofSetColor(0);
 	for (auto pos : body)
@@ -49,14 +51,9 @@ void stretchMesh::draw()
 
 	ofEllipse(headPos.x, headPos.y, 10, 10);
 	
-	glPointSize(10);
-	ofSetColor(255, 0, 0);
-
-	_mesh.drawVertices();
-	_mesh.drawWireframe();
-	
+	ofSetColor(0, 0, 255);
 	//draw verts
-	//drawVerts();
+	drawVerts();
 }
 
 ofVec2f stretchMesh::checkCollisions()
@@ -173,8 +170,6 @@ void stretchMesh::updateVerts()
 	ofVec2f a1;
 	int vertCount = 0;
 
-	ofVec2f size(ofGetWidth(), ofGetHeight());
-
 	for (int i = 0; i < body.size() - 1; i++) {
 		ofVec2f &node = body[i];
 		ofVec2f &next = body[i + 1];
@@ -184,18 +179,15 @@ void stretchMesh::updateVerts()
 
 		//update verts
 		a1 = ofVec2f(node.x + perp.x * width, node.y + perp.y * width);
-		ofVec2f v1 = _mesh.getVertex(vertCount);// vertices[vertCount++];
+		ofVec2f &v1 = vertices[vertCount++];
 		v1.x = (a1.x / ofGetWidth()) * 2 - 1;
 		v1.y = (1 - a1.y / ofGetHeight()) * 2 - 1;
-		_mesh.setVertex(vertCount++, v1 * size);
 
 		a1 = ofVec2f(node.x + perp.x * -width, node.y + perp.y * -width);
-		ofVec2f v2 = _mesh.getVertex(vertCount);// vertices[vertCount++];
+		ofVec2f &v2 = vertices[vertCount++];
 		v2.x = (a1.x / ofGetWidth()) * 2 - 1;
 		v2.y = (1 - a1.y / ofGetHeight()) * 2 - 1;
-		_mesh.setVertex(vertCount++, v2 * size);
 	}
-
 }
 
 void stretchMesh::limit(ofVec2f & vec, float max)

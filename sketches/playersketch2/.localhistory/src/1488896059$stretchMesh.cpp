@@ -1,5 +1,7 @@
 #include "stretchMesh.h"
 
+
+
 stretchMesh::stretchMesh()
 {
 	headPos.x = ofRandom(ofGetWidth(), ofGetHeight());
@@ -16,16 +18,16 @@ stretchMesh::stretchMesh()
 		_mesh.addVertex(ofVec3f(0, 0));
 		_mesh.addVertex(ofVec3f(0, 0));
 
-		if (i < 49) {
-			ofIndexType ii = i * 2;
-			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 1) << "/" << ofToString(ii);
-			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 3) << "/" << ofToString(ii + 1);
+		ofIndexType ii = i*2;
+		ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 1) << "/" << ofToString(ii);
+		ofLog() << ofToString(i) << " : " << ofToString(ii + 2)<<"/"<< ofToString(ii + 3) << "/" << ofToString(ii + 1);
 
-			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 1,ii }, 3);
-			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 3,ii + 1 }, 3);
-		}
+		_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 1,ii }, 3);
+		_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 3,ii + 1 }, 3);
 	}
+
 }
+
 
 stretchMesh::~stretchMesh()
 {
