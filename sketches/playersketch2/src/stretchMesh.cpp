@@ -4,11 +4,12 @@ stretchMesh::stretchMesh()
 {
 	headPos.x = ofRandom(ofGetWidth(), ofGetHeight());
 
-	_mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
+	_mesh.setMode(OF_PRIMITIVE_TRIANGLES);
 
 	body.push_back(headPos);
 
-	for (int i = 0; i < 50; i++) {
+	int length = 50;
+	for (int i = 0; i < length; i++) {
 		body.push_back(headPos);
 		vertices.push_back(ofVec3f(0, 0));
 		vertices.push_back(ofVec3f(0, 0));
@@ -16,7 +17,7 @@ stretchMesh::stretchMesh()
 		_mesh.addVertex(ofVec3f(0, 0));
 		_mesh.addVertex(ofVec3f(0, 0));
 
-		if (i < 49) {
+		if (i < length - 1) {
 			ofIndexType ii = i * 2;
 			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 1) << "/" << ofToString(ii);
 			ofLog() << ofToString(i) << " : " << ofToString(ii + 2) << "/" << ofToString(ii + 3) << "/" << ofToString(ii + 1);
@@ -25,6 +26,7 @@ stretchMesh::stretchMesh()
 			_mesh.addIndices(new ofIndexType[3]{ ii + 2,ii + 3,ii + 1 }, 3);
 		}
 	}
+
 }
 
 stretchMesh::~stretchMesh()
@@ -40,7 +42,7 @@ void stretchMesh::update()
 
 void stretchMesh::draw()
 {
-	ofFill();
+	/*ofFill();
 	ofSetColor(0);
 	for (auto pos : body)
 		ofEllipse(pos.x, pos.y, 10, 10);
@@ -48,11 +50,13 @@ void stretchMesh::draw()
 	ofSetColor(255, 0, 0);
 
 	ofEllipse(headPos.x, headPos.y, 10, 10);
-	
+	*/
+
 	glPointSize(10);
 	ofSetColor(255, 0, 0);
 
-	_mesh.drawVertices();
+	//_mesh.draw();
+	//_mesh.drawVertices();
 	_mesh.drawWireframe();
 	
 	//draw verts
@@ -187,13 +191,13 @@ void stretchMesh::updateVerts()
 		ofVec2f v1 = _mesh.getVertex(vertCount);// vertices[vertCount++];
 		v1.x = (a1.x / ofGetWidth()) * 2 - 1;
 		v1.y = (1 - a1.y / ofGetHeight()) * 2 - 1;
-		_mesh.setVertex(vertCount++, v1 * size);
+		_mesh.setVertex(vertCount++, a1);
 
 		a1 = ofVec2f(node.x + perp.x * -width, node.y + perp.y * -width);
 		ofVec2f v2 = _mesh.getVertex(vertCount);// vertices[vertCount++];
 		v2.x = (a1.x / ofGetWidth()) * 2 - 1;
 		v2.y = (1 - a1.y / ofGetHeight()) * 2 - 1;
-		_mesh.setVertex(vertCount++, v2 * size);
+		_mesh.setVertex(vertCount++, a1);
 	}
 
 }

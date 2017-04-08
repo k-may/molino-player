@@ -42,15 +42,18 @@ void doodlesPlayer::setup()
 		drawer.setup(doodlePaths[i]);
 		doodles.push_back(drawer);
 	}
-
-	posPingPong.allocate(ofGetWidth(), ofGetHeight());
-
+	
+	//posPingPong.allocate(ofGetWidth(), ofGetHeight());
+	buffer.allocate(ofGetWidth(), ofGetHeight());
+	fadeAmount = 255;
 	shader.load("shader/doodle");
 
 }
 
 void doodlesPlayer::update()
 {
+	shader.load("shader/doodle");
+
 	int counter = 0;
 	float time = ofGetElapsedTimeMillis();
 
@@ -62,17 +65,33 @@ void doodlesPlayer::update()
 
 void doodlesPlayer::draw()
 {
-	//posPingPong.dst->draw(0, 0);
-	posPingPong.src->begin();
-	ofClear(255);
+	ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+	float destOpacity = isPlaying ? 255 : 0;
+	opacity += (destOpacity - opacity) * 0.01;
+	ofSetColor(255, 255, 255, opacity);
+
+	ofClear(255, 255, 255, fadeAmount);
+
 	for (int i = 0; i < doodles.size(); i++) {
 		shader.begin();
 		shader.setUniformTexture("tex0", doodles[i].getTextureReference(), 0);
 		doodles[i].draw();
 		shader.end();
 	}
-	posPingPong.src->end();
 
-	posPingPong.src->draw(0, 0);
+}
 
+void doodlesPlayer::play()
+{
+	isPlaying = true;
+}
+
+void doodlesPlayer::pause()
+{
+	isPlaying = false;
+}
+
+void doodlesPlayer::setValue(float value)
+{
+	fadeAmount = (1 - value) * 255;
 }

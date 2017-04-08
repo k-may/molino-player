@@ -1,4 +1,3 @@
 ofxMidi
 ofxPostGlitch
-ofxVideoRecorder
 ofxWMFVideoPlayer

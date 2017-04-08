@@ -1,6 +1,8 @@
 #pragma once
 #include "ofxWMFVideoPlayer.h"
 #include "ofMain.h"
+#include "player.h"
+
 
 // Struct for doing PingPong quickly and easy
 //
@@ -31,7 +33,7 @@ public:
 	void clear() {
 		for (int i = 0; i < 2; i++) {
 			FBOs[i].begin();
-			ofClear(0, 255);
+			ofClear(255, 255);
 			FBOs[i].end();
 		}
 	}
@@ -118,20 +120,29 @@ private:
 	ofxWMFVideoPlayer* _player;
 };
 
-class doodlesPlayer
+class doodlesPlayer : public player
 {
 public:
 	doodlesPlayer();
 	~doodlesPlayer();
-	void setup();
-	void update();
-	void draw();
+	void setup() override;
+	void update() override;
+	void draw() override;
+	void play() override;
+	void pause() override;
+	void setValue(float value) override;
 
 private:
 
 	vector<doodleDrawer> doodles;
 	ofShader shader;
+	
+	ofFbo buffer;
 	pingPongBuffer posPingPong;
 
+	float fadeAmount;
+
+	bool isPlaying;
+	float opacity = 0;
 };
 
