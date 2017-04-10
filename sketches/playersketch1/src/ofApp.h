@@ -9,7 +9,8 @@
 #include "player.h"
 #include "Nano.h"
 
-#include "ofxPostGlitch.h"
+#include "PostGlitch.h"
+
 #include "ofxVideoRecorder.h"
 
 class ofApp : public ofBaseApp {
@@ -45,8 +46,7 @@ public:
 	bool showControls;
 	Nano _nanoKontrol;
 
-	/*Addon instance*/
-	ofxPostGlitch	myGlitch;
+	PostGlitch	myGlitch;
 
 	int state;
 };

@@ -73,6 +73,9 @@
     <ClCompile Include="src\Nano.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\PostGlitch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -243,6 +246,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Nano.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PostGlitch.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

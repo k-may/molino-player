@@ -200,6 +200,7 @@
     <ClCompile Include="..\..\..\..\..\of_v0.9.7_vs_release\addons\ofxWMFVideoPlayer\src\presenter\Presenter.cpp" />
     <ClCompile Include="..\..\..\..\..\of_v0.9.7_vs_release\addons\ofxWMFVideoPlayer\src\presenter\scheduler.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\PostGlitch.cpp" />
     <ClCompile Include="src\starsPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +243,7 @@
     <ClInclude Include="..\..\..\..\..\of_v0.9.7_vs_release\addons\ofxWMFVideoPlayer\src\presenter\Presenter.h" />
     <ClInclude Include="..\..\..\..\..\of_v0.9.7_vs_release\addons\ofxWMFVideoPlayer\src\presenter\scheduler.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\PostGlitch.h" />
     <ClInclude Include="src\starsPlayer.h" />
   </ItemGroup>
   <ItemGroup>
